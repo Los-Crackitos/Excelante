@@ -2,7 +2,7 @@ package models
 
 // ExcelHeadersOptions ...
 type ExcelHeadersOptions struct {
-	Width int
-	Height int
-	CellStyle string
+	Width float64
+	Height float64
+	CellStyle *CellStyle
 }
