@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/Los-Crackitos/Excelante/models"
+	"github.com/Los-Crackitos/Excelante/services"
 )
 
 // WriteExcel ...
@@ -18,6 +20,16 @@ func WriteExcel(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
+	file := excelize.NewFile()
+	services.WriteExcel(file, excelModel)
 
-	json.NewEncoder(w).Encode(&excelModel)
+	/*w.Header().Set("Content-Type", "application/octet-stream")
+  w.Header().Set("Content-Disposition", "attachment;filename='userInputData.xlsx'")
+  w.Header().Set("File-Name", "userInputData.xlsx")
+  w.Header().Set("Content-Transfer-Encoding", "binary")
+  w.Header().Set("Expires", "0")
+  if err := file.Write(w); err != nil {
+		json.NewEncoder(w).Encode(err)
+	}*/
+	 json.NewEncoder(w).Encode("Ok")
 }

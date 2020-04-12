@@ -4,3 +4,7 @@ entrypoint.sh
 
 # Build
 Excelante
+
+# Custom
+*.xlsx
+.DS_Store
