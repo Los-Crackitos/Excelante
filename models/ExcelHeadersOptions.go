@@ -4,5 +4,5 @@ package models
 type ExcelHeadersOptions struct {
 	Width float64
 	Height float64
-	CellStyle *CellStyle
+
 }

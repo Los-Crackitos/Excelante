@@ -45,7 +45,7 @@ func WriteHeaders(sheetName string, excelHeaders *models.ExcelHeaders, f *exceli
 	f.SetCellStyle(sheetName,
 		fmt.Sprintf("%s1", alphabet[index]),
 		fmt.Sprintf("%s1", alphabet[index]),
-		GenerateCellStyleID(excelHeaders.Options.CellStyle, f))
+		GenerateCellStyleID(excelHeaders.CellStyle, f))
 	f.SetCellValue(sheetName,
 		 fmt.Sprintf("%s1", alphabet[index]),
 		 excelHeaders.Name)
