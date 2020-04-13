@@ -1,5 +1,6 @@
 package models
 
+//Font : Represent a cell style object
 type Font struct {
 	Bold      bool    `json:"bold"`
 	Italic    bool    `json:"italic"`

@@ -1,5 +1,6 @@
 package models
 
+//CellStyle : Represent a cell style
 type CellStyle struct {
 	Border        []Border    `json:"border"`
 	Fill          Fill        `json:"fill"`
