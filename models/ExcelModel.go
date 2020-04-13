@@ -1,6 +1,6 @@
 package models
 
-// ExcelModel ...
+//ExcelModel : Represent excel file model
 type ExcelModel struct {
 	Sheets []*ExcelSheets
 }

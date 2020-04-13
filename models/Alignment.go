@@ -1,5 +1,6 @@
 package models
 
+//Alignment : Represent a cell style object
 type Alignment struct {
 	Horizontal      string `json:"horizontal"`
 	Indent          int    `json:"indent"`

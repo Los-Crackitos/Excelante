@@ -1,6 +1,6 @@
 package models
 
-// ExcelHeaders ...
+//ExcelHeaders : Represent excel headers columns
 type ExcelHeaders struct {
 	Name string
 	Options ExcelHeadersOptions

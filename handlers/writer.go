@@ -6,10 +6,11 @@ import (
 
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/Los-Crackitos/Excelante/models"
-	"github.com/Los-Crackitos/Excelante/services"
+	services "github.com/Los-Crackitos/Excelante/services/writer"
 )
 
-// WriteExcel ...
+// WriteExcel : Http Handler
+// @Param : w (http.ResponseWriter) r (*http.Request)
 func WriteExcel(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
