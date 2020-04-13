@@ -26,7 +26,7 @@ func WriteExcel(file *excelize.File, excelModel *models.ExcelModel) {
 // WriteSheet : Create and write into excel sheet
 // @Param : excelSheet (*models.ExcelSheets) file (*excelize.File)
 func WriteSheet(excelSheet *models.ExcelSheets, file *excelize.File) {
-	f.NewSheet(excelSheet.Name)
+	file.NewSheet(excelSheet.Name)
 
 	if excelSheet.Mode == "Array" {
 		CreateArray(excelSheet, file)
