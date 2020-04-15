@@ -2,14 +2,9 @@ package models
 
 //CellStyle : Represent a cell style
 type CellStyle struct {
-	Border        []Border    `json:"border"`
-	Fill          Fill        `json:"fill"`
-	Font          *Font       `json:"font"`
-	Alignment     *Alignment  `json:"alignment"`
-	Protection    *Protection `json:"protection"`
-	NumFmt        int         `json:"number_format"`
-	DecimalPlaces int         `json:"decimal_places"`
-	CustomNumFmt  *string     `json:"custom_number_format"`
-	Lang          string      `json:"lang"`
-	NegRed        bool        `json:"negred"`
+	Border     []Border    `json:"border,omitempty"`
+	Fill       Fill        `json:"fill,omitempty"`
+	Font       *Font       `json:"font,omitempty"`
+	Alignment  *Alignment  `json:"alignment,omitempty"`
+	Protection *Protection `json:"protection,omitempty"`
 }

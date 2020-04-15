@@ -1,0 +1,40 @@
+{
+  "sheets": [{
+    "mode": "table || graph",
+    "name": "sheet Name",
+    "headers": [{
+      "value": "Header 1"
+    }, {
+      "value": "Header 2 with style",
+      "cellStyle": {
+        "border": [{
+          "type": ["left", "top", "right", "bottom"],
+          "color": "000000",
+          "style": "0 || 1 || ... || 13"
+        }]
+      }
+    }, {
+      "value": "Header 3 with style & sub-headers",
+      "headers": [{
+        "value": "Sub-header 1"
+      }, {
+        "value": "Sub-Header 2 with style",
+        "cellStyle": {
+          "fill":{
+            "type":"gradient",
+            "color":["#FFFFFF","#E0EBF5"],
+            "shading":1
+          }
+        }
+      }, {
+        "value": "Sub-header 3 with sub-sub-header",
+        "headers": [{
+          "value": "Sub sub header 1"
+        }]
+      }]
+    }],
+    "datas": [
+			[{"value": "Toto Tata"},{"value": "NR","cellStyle": "..."}, {"value": "Titi Tutu"}, {"value": "100000"}]
+		]
+  }]
+}
