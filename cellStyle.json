@@ -1,0 +1,37 @@
+{
+  "cellStyle": {
+    "border": [{
+      "type": ["left", "top"],
+      "color": "000000",
+      "style": "0 || 1 || ... || 13"
+    }, {
+      "type": ["right", "bottom"],
+      "color": "000000",
+      "style": "0 || 1 || ... || 13"
+    }],
+    "alignment": {
+      "horizontal":"left || center || right",
+      "vertical":"top || center",
+      "wrapText":"true || false || unset"
+    },
+    "font": {
+      "bold":"true || false || unset",
+      "italic":"true || false || unset",
+      "underline":"single || double",
+      "family":"",
+      "size":"",
+      "strike":"",
+      "color":""
+    },
+    "fill": {
+      "type":"",
+      "pattern":"0 || 1 || ... || 18",
+      "color": "",
+      "shading":""
+    },
+    "protection": {
+      "hidden":"true || false || unset",
+      "locked":"true || false || unset"
+    }
+  }
+}

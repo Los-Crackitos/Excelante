@@ -17,7 +17,7 @@ func WriteExcel(w http.ResponseWriter, r *http.Request) {
 	var excelModel *models.ExcelModel
 	if err := json.NewDecoder(r.Body).Decode(&excelModel); err != nil {
 		w.WriteHeader(http.StatusUnprocessableEntity)
-		json.NewEncoder(w).Encode("Body malformed data")
+		json.NewEncoder(w).Encode(err)
 
 		return
 	}
@@ -25,12 +25,12 @@ func WriteExcel(w http.ResponseWriter, r *http.Request) {
 	services.WriteExcel(file, excelModel)
 
 	/*w.Header().Set("Content-Type", "application/octet-stream")
-  w.Header().Set("Content-Disposition", "attachment;filename='userInputData.xlsx'")
-  w.Header().Set("File-Name", "userInputData.xlsx")
-  w.Header().Set("Content-Transfer-Encoding", "binary")
-  w.Header().Set("Expires", "0")
-  if err := file.Write(w); err != nil {
-		json.NewEncoder(w).Encode(err)
-	}*/
-	 json.NewEncoder(w).Encode("Ok")
+	  w.Header().Set("Content-Disposition", "attachment;filename='userInputData.xlsx'")
+	  w.Header().Set("File-Name", "userInputData.xlsx")
+	  w.Header().Set("Content-Transfer-Encoding", "binary")
+	  w.Header().Set("Expires", "0")
+	  if err := file.Write(w); err != nil {
+			json.NewEncoder(w).Encode(err)
+		}*/
+	json.NewEncoder(w).Encode("Ok")
 }
