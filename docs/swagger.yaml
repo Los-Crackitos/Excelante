@@ -1,5 +1,128 @@
 basePath: /api/v1
 definitions:
+  models.Alignment:
+    properties:
+      horizontal:
+        type: string
+      shrink_to_fit:
+        type: boolean
+      vertical:
+        type: string
+      wrap_text:
+        type: boolean
+    type: object
+  models.Background:
+    properties:
+      color:
+        items:
+          type: string
+        type: array
+      pattern:
+        type: integer
+      shading:
+        type: integer
+      type:
+        type: string
+    type: object
+  models.Border:
+    properties:
+      color:
+        type: string
+      style:
+        type: integer
+      type:
+        type: string
+    type: object
+  models.Cell:
+    properties:
+      style:
+        $ref: '#/definitions/models.Style'
+        type: object
+      value:
+        type: object
+    type: object
+  models.File:
+    properties:
+      sheets:
+        items:
+          $ref: '#/definitions/models.Sheet'
+        type: array
+    type: object
+  models.Font:
+    properties:
+      bold:
+        type: boolean
+      color:
+        type: string
+      family:
+        type: string
+      italic:
+        type: boolean
+      size:
+        type: number
+      strike:
+        type: boolean
+      underline:
+        type: string
+    type: object
+  models.Item:
+    properties:
+      mode:
+        type: string
+      starting_cell_coordinates:
+        type: string
+      tables:
+        items:
+          $ref: '#/definitions/models.Table'
+        type: array
+    type: object
+  models.Protection:
+    properties:
+      hidden:
+        type: boolean
+      locked:
+        type: boolean
+    type: object
+  models.Sheet:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/models.Item'
+        type: array
+      name:
+        type: string
+      orientation:
+        description: 'Default : landscape'
+        type: string
+    type: object
+  models.Style:
+    properties:
+      alignment:
+        $ref: '#/definitions/models.Alignment'
+        type: object
+      background:
+        $ref: '#/definitions/models.Background'
+        type: object
+      border:
+        items:
+          $ref: '#/definitions/models.Border'
+        type: array
+      font:
+        $ref: '#/definitions/models.Font'
+        type: object
+      protection:
+        $ref: '#/definitions/models.Protection'
+        type: object
+    type: object
+  models.Table:
+    properties:
+      cells:
+        items:
+          $ref: '#/definitions/models.Cell'
+        type: array
+      orientation:
+        type: string
+    type: object
   services.Output:
     additionalProperties:
       additionalProperties: true
@@ -7,7 +130,6 @@ definitions:
     type: object
 info:
   contact: {}
-  description: This is a sample server celler server.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -45,8 +167,24 @@ paths:
       consumes:
       - application/json
       description: transform JSON to Excel file
+      parameters:
+      - description: Items you want to convert into an Excel file
+        in: body
+        name: file
+        required: true
+        schema:
+          $ref: '#/definitions/models.File'
       produces:
-      - application/text
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
       summary: Write Excel file
       tags:
       - Writers

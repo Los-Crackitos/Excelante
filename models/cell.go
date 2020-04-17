@@ -1,6 +1,6 @@
 package models
 
-// Cell : Represent  json model Data
+// Cell struct contain all the cell data used to generate a cell
 type Cell struct {
 	Value interface{} `json:"value"`
 	Style *Style      `json:"style,omitempty"`
@@ -9,7 +9,7 @@ type Cell struct {
 // Style represent json model Data
 type Style struct {
 	Border     []*Border   `json:"border,omitempty"`
-	Fill       *Fill       `json:"fill,omitempty"`
+	Background *Background `json:"background,omitempty"`
 	Font       *Font       `json:"font,omitempty"`
 	Alignment  *Alignment  `json:"alignment,omitempty"`
 	Protection *Protection `json:"protection,omitempty"`
@@ -32,24 +32,25 @@ type Font struct {
 	Color     string  `json:"color,omitempty"`
 }
 
-//Fill represent a json cell style model
-type Fill struct {
+// Background represent a JSON cell style model
+type Background struct {
 	Type    string   `json:"type,omitempty"`
 	Pattern int      `json:"pattern,omitempty"`
 	Color   []string `json:"color,omitempty"`
 	Shading int      `json:"shading,omitempty"`
 }
 
-//Border represent a json cell style model
+// Border struct contain all the border data used to stylize a border of a cell, column or row
 type Border struct {
-	Type  []string `json:"type,omitempty"`
-	Color string   `json:"color,omitempty"`
-	Style int      `json:"style,omitempty"`
+	Type  string `json:"type,omitempty"`
+	Color string `json:"color,omitempty"`
+	Style int    `json:"style,omitempty"`
 }
 
-//Alignment represent a json cell style model
+// Alignment struct contain the text alignment details that will be used inside cell
 type Alignment struct {
-	Horizontal string `json:"horizontal,omitempty"`
-	Vertical   string `json:"vertical,omitempty"`
-	WrapText   bool   `json:"wrap_text,omitempty"`
+	Horizontal  string `json:"horizontal,omitempty"`
+	Vertical    string `json:"vertical,omitempty"`
+	ShrinkToFit bool   `json:"shrink_to_fit"`
+	WrapText    bool   `json:"wrap_text,omitempty"`
 }
