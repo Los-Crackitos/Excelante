@@ -43,3 +43,13 @@ func CreateTable(excelSheet *models.ExcelSheets, file *excelize.File) {
 	headers.WriteHeaders(excelSheet.Name, excelSheet.Headers, file)
 	datas.WriteDatas(excelSheet, file)
 }
+
+// determinate number of sub headers to define datas start coordonnates
+func t(excelHeaders []*models.ExcelHeaders) {
+
+	for n := 0; n <= len(excelHeaders); n++ {
+		if len(excelHeaders[n].Headers) > 0 {
+			t(excelHeaders[n].Headers)
+		}
+	}
+}
