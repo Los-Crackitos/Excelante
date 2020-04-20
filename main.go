@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/Los-Crackitos/Excelante/router"
 
 func main() {
-	fmt.Printf("hello world")
+	router.CreateRouter()
 }
