@@ -10,10 +10,9 @@
           "datas": [
             {
               "column": {
-                "header": {
-                  "name": "Product",
-                  "style": {}
-                },
+                "name": "Product",
+                "style": {},
+                "column": {},
                 "cells": [
                   {
                     "value": "Table",

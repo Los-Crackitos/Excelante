@@ -1,10 +1,17 @@
 package models
 
-// Header represent a json model Header
-type Header struct {
-	Orientation string    `json:"orientation,omitempty"` // Can be "col" or "row", default "col"
-	Name        string    `json:"name"`
-	Style       *Style    `json:"style,omitempty"`
-	SubHeader   []*Header `json:"sub_headers,omitempty"`
-	Cells       []*Cell   `json:"cells,omitempty"`
+// Column represent json model Column
+type Column struct {
+	Name   string `json:"name"`
+	Style  *Style `json:"style,omitempty"`
+	Column []*Column `json:"column,omitempty"`
+	Cells  []*Cell `json:"cells,omitempty"`
+}
+
+// Row represent json model Row
+type Row struct {
+	Name  string `json:"name"`
+	Style *Style `json:"style,omitempty"`
+	Row   []*Row `json:"row,omitempty"`
+	Cells []*Cell `json:"cells,omitempty"`
 }
