@@ -1,5 +1,5 @@
 package models
 
-// Data : Represent json model Data
+// Data represent json model Data
 type Data struct {
 }

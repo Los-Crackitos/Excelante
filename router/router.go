@@ -10,7 +10,7 @@ import (
 	"github.com/rs/cors"
 )
 
-// CreateRouter : Create Excelante router api
+// CreateRouter create Excelante global router api
 func CreateRouter() {
 	router := mux.NewRouter()
 
