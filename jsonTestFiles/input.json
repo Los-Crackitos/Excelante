@@ -7,12 +7,12 @@
         {
           "mode": "table",
           "startingCellCoordonates": "A1",
-          "datas": [
+          "data": [
             {
               "column": {
                 "name": "Product",
                 "style": {},
-                "column": {},
+                "sub-columns": [{}],
                 "cells": [
                   {
                     "value": "Table",
@@ -27,7 +27,7 @@
                 ]
               }
             }, {
-              "header": {
+              "column": {
                 "name": "Price",
                 "style": {},
                 "cells": [

@@ -4,5 +4,5 @@ package models
 type Item struct {
 	Mode                    string  `json:"mode"`
 	StartingCellCoordonates string  `json:"starting_cell_coordonates,omitempty"`
-	Datas                   []*Data `json:"datas"`
+	Data                    []*Data `json:"data"`
 }

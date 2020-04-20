@@ -14,7 +14,7 @@ import (
 func CreateRouter() {
 	router := mux.NewRouter()
 
-	CreateWriterRouter(router)
+	createWriterRouter(router)
 
 	port := os.Getenv("PORT")
 	if port == "" {
