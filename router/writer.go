@@ -6,7 +6,7 @@ import (
 )
 
 // CreateWriterRouter create writer routes and dispatch http method post to handler
-func CreateWriterRouter(router *mux.Router) {
+func createWriterRouter(router *mux.Router) {
 	writerRouter := router.PathPrefix("/write").Subrouter()
 
 	writerRouter.
