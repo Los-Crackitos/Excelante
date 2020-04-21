@@ -1,6 +1,6 @@
 package models
 
-// Header represent json model column or row
+// Table represent json model column or row
 type Table struct {
 	Name  string  `json:"name"`
 	Style *Style  `json:"style,omitempty"`
@@ -9,12 +9,12 @@ type Table struct {
 
 // Column represent json model Column
 type Column struct {
-	Header
+	Table
 	Columns []*Column `json:"column,omitempty"`
 }
 
 // Row represent json model Row
 type Row struct {
-	Header
+	Table
 	Rows []*Row `json:"row,omitempty"`
 }

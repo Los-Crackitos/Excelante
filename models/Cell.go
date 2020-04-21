@@ -1,6 +1,6 @@
 package models
 
-// Cell : Represent json model Data
+// Cell : Represent  json model Data
 type Cell struct {
 	Value interface{} `json:"value"`
 	Style *Style      `json:"style,omitempty"`
