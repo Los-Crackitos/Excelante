@@ -1,0 +1,80 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server celler server.",
+        "title": "Excelante API",
+        "contact": {},
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "0.1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/read/lines": {
+            "post": {
+                "description": "transform given Excel file to JSON",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Readers"
+                ],
+                "summary": "Read Excel file line by line",
+                "parameters": [
+                    {
+                        "description": "The Excel file to convert",
+                        "name": "file",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/services.Output"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/write": {
+            "post": {
+                "description": "transform JSON to Excel file",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/text"
+                ],
+                "tags": [
+                    "Writers"
+                ],
+                "summary": "Write Excel file"
+            }
+        }
+    },
+    "definitions": {
+        "services.Output": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "additionalProperties": true
+            }
+        }
+    }
+}
