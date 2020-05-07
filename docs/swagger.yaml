@@ -1,0 +1,53 @@
+basePath: /api/v1
+definitions:
+  services.Output:
+    additionalProperties:
+      additionalProperties: true
+      type: object
+    type: object
+info:
+  contact: {}
+  description: This is a sample server celler server.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  title: Excelante API
+  version: 0.1.0
+paths:
+  /read/lines:
+    post:
+      consumes:
+      - multipart/form-data
+      description: transform given Excel file to JSON
+      parameters:
+      - description: The Excel file to convert
+        in: body
+        name: file
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Output'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Read Excel file line by line
+      tags:
+      - Readers
+  /write:
+    post:
+      consumes:
+      - application/json
+      description: transform JSON to Excel file
+      produces:
+      - application/text
+      summary: Write Excel file
+      tags:
+      - Writers
+swagger: "2.0"

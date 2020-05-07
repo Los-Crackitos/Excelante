@@ -8,14 +8,18 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-// CreateRouter create Excelante global router api
+// CreateRouter create Excelante API routes
 func CreateRouter() {
 	router := mux.NewRouter()
+	APIRouter := router.PathPrefix("/api/v1").Subrouter()
 
-	createWriterRouter(router)
-	createReaderRouter(router)
+	APIRouter.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
+	createWriterRouter(APIRouter)
+	createReaderRouter(APIRouter)
 
 	port := os.Getenv("PORT")
 	if port == "" {
