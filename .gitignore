@@ -4,3 +4,7 @@ entrypoint.sh
 
 # Build
 Excelante
+/*.exe
+
+# Output
+/*.xlsx

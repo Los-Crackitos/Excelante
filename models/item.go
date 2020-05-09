@@ -1,8 +1,8 @@
 package models
 
-// Item represent  json model Item
+// Item struct is a thing (table, graph, ...) you want to insert into your Excel file
 type Item struct {
-	Mode                    string        `json:"mode"`
-	StartingCellCoordonates string        `json:"starting_cell_coordonates,omitempty"`
-	Data                    []interface{} `json:"data"`
+	Mode                    string   `json:"mode"`
+	StartingCellCoordinates string   `json:"starting_cell_coordinates,omitempty"`
+	Tables                  []*Table `json:"tables"`
 }

@@ -13,6 +13,6 @@ require (
 	github.com/swaggo/http-swagger v0.0.0-20200308142732-58ac5e232fba
 	github.com/swaggo/swag v1.6.5
 	golang.org/x/net v0.0.0-20200506145744-7e3656a0809f // indirect
-	golang.org/x/tools v0.0.0-20200507050207-a1532b81a28f // indirect
+	golang.org/x/tools v0.0.0-20200507205054-480da3ebd79c // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
