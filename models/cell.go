@@ -9,7 +9,7 @@ type Cell struct {
 // Style represent json model Data
 type Style struct {
 	Border     []*Border   `json:"border,omitempty"`
-	Background *Background `json:"background,omitempty"`
+	Fill       *Fill       `json:"fill,omitempty"`
 	Font       *Font       `json:"font,omitempty"`
 	Alignment  *Alignment  `json:"alignment,omitempty"`
 	Protection *Protection `json:"protection,omitempty"`
@@ -32,8 +32,8 @@ type Font struct {
 	Color     string  `json:"color,omitempty"`
 }
 
-// Background represent a JSON cell style model
-type Background struct {
+// Fill represent a JSON cell style model
+type Fill struct {
 	Type    string   `json:"type,omitempty"`
 	Pattern int      `json:"pattern,omitempty"`
 	Color   []string `json:"color,omitempty"`
