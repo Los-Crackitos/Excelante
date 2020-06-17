@@ -12,4 +12,8 @@ func createReaderRouter(router *mux.Router) {
 	writerRouter.
 		HandleFunc("/lines", handlers.ReadExcelFileByLine).
 		Methods("POST")
+
+	writerRouter.
+		HandleFunc("/columns", handlers.ReadExcelFileByColumn).
+		Methods("POST")
 }

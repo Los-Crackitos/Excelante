@@ -136,6 +136,32 @@ info:
   title: Excelante API
   version: 0.1.0
 paths:
+  /read/columns:
+    post:
+      consumes:
+      - multipart/form-data
+      description: transform given Excel file to JSON
+      parameters:
+      - description: The Excel file to convert
+        in: body
+        name: file
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Output'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Read Excel file column by column
+      tags:
+      - Readers
   /read/lines:
     post:
       consumes:
