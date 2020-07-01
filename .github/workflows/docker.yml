@@ -1,0 +1,29 @@
+name: Docker deployment
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    name: Push Docker images
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Push Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          repository: loscrackitos/excelante
+          tags: latest
+      - name: Push GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          registry: docker.pkg.github.com
+          repository: los-crackitos/excelante/excelante
+          tags: latest
