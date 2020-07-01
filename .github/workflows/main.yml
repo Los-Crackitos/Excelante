@@ -1,3 +1,5 @@
+name: Code Quality
+
 on: [push]
 
 jobs:
@@ -5,42 +7,42 @@ jobs:
     runs-on: ubuntu-latest
     name: Lint Golang code
     steps:
-    - uses: actions/checkout@v2
-    - name: lint
-      id: golint
-      uses: Jerome1337/go-action/lint@master
-    - name: Get Golint output
-      run: echo "${{ steps.golint.outputs.golint-output }}"
+      - uses: actions/checkout@v2
+      - name: lint
+        id: golint
+        uses: Jerome1337/go-action/lint@master
+      - name: Get Golint output
+        run: echo "${{ steps.golint.outputs.golint-output }}"
 
   gofmt:
     runs-on: ubuntu-latest
     name: Check Golang code formatting
     steps:
-    - uses: actions/checkout@v2
-    - name: fmt
-      id: gofmt
-      uses: Jerome1337/go-action/fmt@master
-    - name: Get Gofmt output
-      run: echo "${{ steps.gofmt.outputs.gofmt-output }}"
+      - uses: actions/checkout@v2
+      - name: fmt
+        id: gofmt
+        uses: Jerome1337/go-action/fmt@master
+      - name: Get Gofmt output
+        run: echo "${{ steps.gofmt.outputs.gofmt-output }}"
 
   goimports:
     runs-on: ubuntu-latest
     name: Check Golang code imports
     steps:
-    - uses: actions/checkout@v2
-    - name: imports
-      id: goimports
-      uses: Jerome1337/go-action/imports@master
-    - name: Get Goimports output
-      run: echo "${{ steps.goimports.outputs.goimports-output }}"
+      - uses: actions/checkout@v2
+      - name: imports
+        id: goimports
+        uses: Jerome1337/go-action/imports@master
+      - name: Get Goimports output
+        run: echo "${{ steps.goimports.outputs.goimports-output }}"
 
   gomod:
     runs-on: ubuntu-latest
     name: Check for unused imports
     steps:
-    - uses: actions/checkout@v2
-    - name: mod
-      id: gomod
-      uses: Jerome1337/go-action/mod@master
-    - name: Get Gomod output
-      run: echo "${{ steps.gomod.outputs.gomod-output }}"
+      - uses: actions/checkout@v2
+      - name: mod
+        id: gomod
+        uses: Jerome1337/go-action/mod@master
+      - name: Get Gomod output
+        run: echo "${{ steps.gomod.outputs.gomod-output }}"
