@@ -8,20 +8,36 @@ import (
 
 func (file *File) createTables(sheetName string, startingCoordinates string, tables []*models.Table) {
 	for index, table := range tables {
-		file.writeTable(sheetName, table.Cells, index+1, table.Orientation)
+		// initialPositions is an integer array[col,row]
+		var initialPositions []int
+		columnPosition, rowPosition, err := excelize.CellNameToCoordinates(startingCoordinates)
+		if err != nil {
+			columnPosition, rowPosition = 1, 1 // StartingCoordonates are not valid, so table begin at position 1,1
+		}
+
+		// Depending table orientation, we iterate through column or row
+		if table.Orientation == "row" {
+			rowPosition = rowPosition + index
+		} else {
+			columnPosition = columnPosition + index
+		}
+
+		initialPositions = append(initialPositions, columnPosition, rowPosition)
+
+		file.writeTable(sheetName, table.Cells, initialPositions, table.Orientation)
 	}
 }
 
-func (file *File) writeTable(sheetName string, cells []*models.Cell, initialPosition int, orientation string) {
+func (file *File) writeTable(sheetName string, cells []*models.Cell, initialPositions []int, orientation string) {
 	var columnPosition, rowPosition int
 
 	for index, cell := range cells {
 		if orientation == "row" {
-			columnPosition = index + 1
-			rowPosition = initialPosition
+			columnPosition = initialPositions[0] + index
+			rowPosition = initialPositions[1]
 		} else {
-			columnPosition = initialPosition
-			rowPosition = index + 1
+			columnPosition = initialPositions[0]
+			rowPosition = initialPositions[1] + index
 		}
 
 		cellPosition, _ := excelize.CoordinatesToCellName(columnPosition, rowPosition)
