@@ -18,7 +18,8 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
           repository: loscrackitos/excelante
-          tags: latest
+          tag_with_ref: true
+          push: ${{ startsWith(github.ref, 'refs/tags/') }}
       - name: Push GitHub Packages
         uses: docker/build-push-action@v1
         with:
@@ -26,4 +27,5 @@ jobs:
           password: ${{ github.token }}
           registry: docker.pkg.github.com
           repository: los-crackitos/excelante/excelante
-          tags: latest
+          tag_with_ref: true
+          push: ${{ startsWith(github.ref, 'refs/tags/') }}
