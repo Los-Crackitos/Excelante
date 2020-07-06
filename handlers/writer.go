@@ -37,12 +37,17 @@ func WriteExcelFile(w http.ResponseWriter, r *http.Request) {
 
 	file.WriteSheets(body.Sheets)
 
+	var filename = fmt.Sprintf("%s", time.Now().Format("2006-01-02_15:04:05"))
+	if body.Filename != "" {
+		filename = body.Filename
+	}
+
 	w.WriteHeader(http.StatusCreated)
 	w.Header().Set("Content-Type", "application/octet-stream")
 	w.Header().Set(
 		"Content-Disposition", fmt.Sprintf(
-			"attachment; filename=file_generated_%s.xlsx",
-			time.Now().Format("2006-01-02_15:04:05"),
+			"attachment; filename=%s.xlsx",
+			filename,
 		),
 	)
 	w.Header().Set("Content-Transfer-Encoding", "binary")

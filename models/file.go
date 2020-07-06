@@ -2,5 +2,6 @@ package models
 
 // File represent  json model File
 type File struct {
-	Sheets []*Sheet `json:"sheets"`
+	Filename string   `json:"filename,omitempty"`
+	Sheets   []*Sheet `json:"sheets"`
 }
