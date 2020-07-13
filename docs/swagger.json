@@ -31,7 +31,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "primitive"
                         }
                     }
                 ],
@@ -71,7 +71,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "primitive"
                         }
                     }
                 ],
@@ -150,26 +150,6 @@
                 }
             }
         },
-        "models.Background": {
-            "type": "object",
-            "properties": {
-                "color": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "pattern": {
-                    "type": "integer"
-                },
-                "shading": {
-                    "type": "integer"
-                },
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
         "models.Border": {
             "type": "object",
             "properties": {
@@ -207,6 +187,26 @@
                 }
             }
         },
+        "models.Fill": {
+            "type": "object",
+            "properties": {
+                "color": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "pattern": {
+                    "type": "integer"
+                },
+                "shading": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
         "models.Font": {
             "type": "object",
             "properties": {
@@ -233,13 +233,76 @@
                 }
             }
         },
+        "models.Format": {
+            "type": "object",
+            "properties": {
+                "lock_aspect_ratio": {
+                    "type": "boolean"
+                },
+                "locked": {
+                    "type": "boolean"
+                },
+                "print_obj": {
+                    "type": "boolean"
+                },
+                "x_offset": {
+                    "type": "number"
+                },
+                "x_scale": {
+                    "type": "number"
+                },
+                "y_offset": {
+                    "type": "number"
+                },
+                "y_scale": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.Graph": {
+            "type": "object",
+            "properties": {
+                "format": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Format"
+                },
+                "legend": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Legend"
+                },
+                "plotarea": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Plotarea"
+                },
+                "series": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Series"
+                    }
+                },
+                "title": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Title"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
         "models.Item": {
             "type": "object",
             "properties": {
+                "graph": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Graph"
+                },
                 "mode": {
                     "type": "string"
                 },
                 "starting_cell_coordinates": {
+                    "type": "string"
+                },
+                "starting_graph_coordinates": {
                     "type": "string"
                 },
                 "tables": {
@@ -247,6 +310,40 @@
                     "items": {
                         "$ref": "#/definitions/models.Table"
                     }
+                }
+            }
+        },
+        "models.Legend": {
+            "type": "object",
+            "properties": {
+                "position": {
+                    "type": "string"
+                },
+                "show_legend_key": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "models.Plotarea": {
+            "type": "object",
+            "properties": {
+                "show_bubble_size": {
+                    "type": "boolean"
+                },
+                "show_cat_name": {
+                    "type": "boolean"
+                },
+                "show_leader_lines": {
+                    "type": "boolean"
+                },
+                "show_percent": {
+                    "type": "boolean"
+                },
+                "show_series_name": {
+                    "type": "boolean"
+                },
+                "show_val": {
+                    "type": "boolean"
                 }
             }
         },
@@ -258,6 +355,20 @@
                 },
                 "locked": {
                     "type": "boolean"
+                }
+            }
+        },
+        "models.Series": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "string"
                 }
             }
         },
@@ -286,15 +397,15 @@
                     "type": "object",
                     "$ref": "#/definitions/models.Alignment"
                 },
-                "background": {
-                    "type": "object",
-                    "$ref": "#/definitions/models.Background"
-                },
                 "border": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/models.Border"
                     }
+                },
+                "fill": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Fill"
                 },
                 "font": {
                     "type": "object",
@@ -316,6 +427,14 @@
                     }
                 },
                 "orientation": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Title": {
+            "type": "object",
+            "properties": {
+                "name": {
                     "type": "string"
                 }
             }

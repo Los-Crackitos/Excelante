@@ -11,19 +11,6 @@ definitions:
       wrap_text:
         type: boolean
     type: object
-  models.Background:
-    properties:
-      color:
-        items:
-          type: string
-        type: array
-      pattern:
-        type: integer
-      shading:
-        type: integer
-      type:
-        type: string
-    type: object
   models.Border:
     properties:
       color:
@@ -48,6 +35,19 @@ definitions:
           $ref: '#/definitions/models.Sheet'
         type: array
     type: object
+  models.Fill:
+    properties:
+      color:
+        items:
+          type: string
+        type: array
+      pattern:
+        type: integer
+      shading:
+        type: integer
+      type:
+        type: string
+    type: object
   models.Font:
     properties:
       bold:
@@ -65,16 +65,81 @@ definitions:
       underline:
         type: string
     type: object
+  models.Format:
+    properties:
+      lock_aspect_ratio:
+        type: boolean
+      locked:
+        type: boolean
+      print_obj:
+        type: boolean
+      x_offset:
+        type: number
+      x_scale:
+        type: number
+      y_offset:
+        type: number
+      y_scale:
+        type: number
+    type: object
+  models.Graph:
+    properties:
+      format:
+        $ref: '#/definitions/models.Format'
+        type: object
+      legend:
+        $ref: '#/definitions/models.Legend'
+        type: object
+      plotarea:
+        $ref: '#/definitions/models.Plotarea'
+        type: object
+      series:
+        items:
+          $ref: '#/definitions/models.Series'
+        type: array
+      title:
+        $ref: '#/definitions/models.Title'
+        type: object
+      type:
+        type: string
+    type: object
   models.Item:
     properties:
+      graph:
+        $ref: '#/definitions/models.Graph'
+        type: object
       mode:
         type: string
       starting_cell_coordinates:
+        type: string
+      starting_graph_coordinates:
         type: string
       tables:
         items:
           $ref: '#/definitions/models.Table'
         type: array
+    type: object
+  models.Legend:
+    properties:
+      position:
+        type: string
+      show_legend_key:
+        type: boolean
+    type: object
+  models.Plotarea:
+    properties:
+      show_bubble_size:
+        type: boolean
+      show_cat_name:
+        type: boolean
+      show_leader_lines:
+        type: boolean
+      show_percent:
+        type: boolean
+      show_series_name:
+        type: boolean
+      show_val:
+        type: boolean
     type: object
   models.Protection:
     properties:
@@ -82,6 +147,15 @@ definitions:
         type: boolean
       locked:
         type: boolean
+    type: object
+  models.Series:
+    properties:
+      categories:
+        type: string
+      name:
+        type: string
+      values:
+        type: string
     type: object
   models.Sheet:
     properties:
@@ -100,13 +174,13 @@ definitions:
       alignment:
         $ref: '#/definitions/models.Alignment'
         type: object
-      background:
-        $ref: '#/definitions/models.Background'
-        type: object
       border:
         items:
           $ref: '#/definitions/models.Border'
         type: array
+      fill:
+        $ref: '#/definitions/models.Fill'
+        type: object
       font:
         $ref: '#/definitions/models.Font'
         type: object
@@ -121,6 +195,11 @@ definitions:
           $ref: '#/definitions/models.Cell'
         type: array
       orientation:
+        type: string
+    type: object
+  models.Title:
+    properties:
+      name:
         type: string
     type: object
   services.Output:
@@ -147,7 +226,7 @@ paths:
         name: file
         required: true
         schema:
-          type: string
+          type: primitive
       produces:
       - application/json
       responses:
@@ -173,7 +252,7 @@ paths:
         name: file
         required: true
         schema:
-          type: string
+          type: primitive
       produces:
       - application/json
       responses:
