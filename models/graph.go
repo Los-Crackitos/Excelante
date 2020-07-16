@@ -2,12 +2,13 @@ package models
 
 // Graph struct is containing all the graph values that will be create on excel sheet
 type Graph struct {
-	Type     string    `json:"type"`
-	Series   []*Series `json:"series"`
-	Format   *Format   `json:"format,omitempty"`
-	Legend   *Legend   `json:"legend"`
-	Title    *Title    `json:"title,omitempty"`
-	Plotarea *Plotarea `json:"plotarea,omitempty"`
+	Type      string     `json:"type"`
+	Series    []*Series  `json:"series"`
+	Format    *Format    `json:"format,omitempty"`
+	Legend    *Legend    `json:"legend"`
+	Title     *Title     `json:"title,omitempty"`
+	Plotarea  *Plotarea  `json:"plotarea,omitempty"`
+	Dimension *Dimension `json:"dimension,omitempty"`
 }
 
 // Series struct is containing all the series of displayed graph
@@ -37,6 +38,12 @@ type Legend struct {
 // Title struct is containing graph title
 type Title struct {
 	Name string `json:"name,omitempty"`
+}
+
+// Dimension struct is the dimension of the chart
+type Dimension struct {
+	Height int `json:"height,omitempty"`
+	Width  int `json:"width,omitempty"`
 }
 
 // Plotarea struct is containing all options for graph
