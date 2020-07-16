@@ -4,9 +4,9 @@ package models
 type Graph struct {
 	Type     string    `json:"type"`
 	Series   []*Series `json:"series"`
-	Format   *Format   `json:"format"`
+	Format   *Format   `json:"format,omitempty"`
 	Legend   *Legend   `json:"legend"`
-	Title    *Title    `json:"title"`
+	Title    *Title    `json:"title,omitempty"`
 	Plotarea *Plotarea `json:"plotarea,omitempty"`
 }
 
@@ -30,13 +30,13 @@ type Format struct {
 
 // Legend struct is containing graph legend
 type Legend struct {
-	Position      string `json:"position"`
-	ShowLegendKey bool   `json:"show_legend_key"`
+	Position      string `json:"position,omitempty"`
+	ShowLegendKey bool   `json:"show_legend_key,omitempty"`
 }
 
 // Title struct is containing graph title
 type Title struct {
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 // Plotarea struct is containing all options for graph

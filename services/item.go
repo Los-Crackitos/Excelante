@@ -11,6 +11,6 @@ func (file *File) writeItems(sheetName string, items []*models.Item) {
 func (file *File) writeItem(sheetName string, item *models.Item) {
 	file.createTables(sheetName, item.StartingCellCoordinates, item.Tables)
 	if item.Graph != nil {
-		file.createGraph(sheetName, item.StartingGraphCoordinates, item.Graph)
+		file.createGraph(sheetName, item.StartingCellCoordinates, item.Graph)
 	}
 }
