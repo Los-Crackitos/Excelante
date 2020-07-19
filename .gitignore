@@ -8,3 +8,6 @@ Excelante
 
 # Output
 /*.xlsx
+
+# Coverage
+/coverage.*

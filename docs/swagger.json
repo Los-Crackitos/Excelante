@@ -116,8 +116,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "type": "string"
                         }
@@ -147,26 +147,6 @@
                 },
                 "wrap_text": {
                     "type": "boolean"
-                }
-            }
-        },
-        "models.Background": {
-            "type": "object",
-            "properties": {
-                "color": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "pattern": {
-                    "type": "integer"
-                },
-                "shading": {
-                    "type": "integer"
-                },
-                "type": {
-                    "type": "string"
                 }
             }
         },
@@ -204,6 +184,26 @@
                     "items": {
                         "$ref": "#/definitions/models.Sheet"
                     }
+                }
+            }
+        },
+        "models.Fill": {
+            "type": "object",
+            "properties": {
+                "color": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "pattern": {
+                    "type": "integer"
+                },
+                "shading": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
                 }
             }
         },
@@ -286,15 +286,15 @@
                     "type": "object",
                     "$ref": "#/definitions/models.Alignment"
                 },
-                "background": {
-                    "type": "object",
-                    "$ref": "#/definitions/models.Background"
-                },
                 "border": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/models.Border"
                     }
+                },
+                "fill": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Fill"
                 },
                 "font": {
                     "type": "object",
