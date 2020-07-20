@@ -1,5 +1,3 @@
-github.com/360EntSecGroup-Skylar/excelize/v2 v2.2.1-0.20200608110250-8ce48b859a38 h1:0uVKo8+bjIqGqKNLgoaUC+XiybGC8W+TH379XhP1CcY=
-github.com/360EntSecGroup-Skylar/excelize/v2 v2.2.1-0.20200608110250-8ce48b859a38/go.mod h1:Uwb0d1GgxJieUWZG5WylTrgQ2SrldfjagAxheU8W6MQ=
 github.com/360EntSecGroup-Skylar/excelize/v2 v2.2.1-0.20200621161456-15fd56853fe1 h1:1gNUg1eYQzyVzXiJiuqDZdO9LxVu5uauypI2L2t5M8o=
 github.com/360EntSecGroup-Skylar/excelize/v2 v2.2.1-0.20200621161456-15fd56853fe1/go.mod h1:Uwb0d1GgxJieUWZG5WylTrgQ2SrldfjagAxheU8W6MQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=

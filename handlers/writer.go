@@ -19,7 +19,7 @@ import (
 // @Accept json
 // @Param file body models.File true "Items you want to convert into an Excel file"
 // @Produce octet-stream
-// @Success 200 {string} string
+// @Success 201 {string} string
 // @Failure 422 {string} string
 // @Router /write [post]
 func WriteExcelFile(w http.ResponseWriter, r *http.Request) {

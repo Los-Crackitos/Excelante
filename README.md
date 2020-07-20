@@ -1,6 +1,8 @@
 # Excelante
 
-![Build Status](https://github.com/Los-Crackitos/Excelante/workflows/.github/workflows/main.yml/badge.svg?branch=master)
+![Code Quality Status](https://github.com/Los-Crackitos/Excelante/workflows/.github/workflows/code-quality.yml/badge.svg?branch=master)
+![Tests Status](https://github.com/Los-Crackitos/Excelante/workflows/.github/workflows/test.yml/badge.svg?branch=master)
+[![Codecov](https://codecov.io/gh/Los-Crackitos/Excelante/branch/master/graph/badge.svg)](https://codecov.io/gh/Los-Crackitos/Excelante)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Los-Crackitos/Excelante)](https://goreportcard.com/report/github.com/Los-Crackitos/Excelante)
 ![Code Size](https://img.shields.io/github/languages/code-size/Los-Crackitos/Excelante)
 [![Go Doc](https://godoc.org/github.com/Los-Crackitos/Excelante?status.svg)](https://godoc.org/github.com/Los-Crackitos/Excelante)

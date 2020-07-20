@@ -11,19 +11,6 @@ definitions:
       wrap_text:
         type: boolean
     type: object
-  models.Background:
-    properties:
-      color:
-        items:
-          type: string
-        type: array
-      pattern:
-        type: integer
-      shading:
-        type: integer
-      type:
-        type: string
-    type: object
   models.Border:
     properties:
       color:
@@ -47,6 +34,19 @@ definitions:
         items:
           $ref: '#/definitions/models.Sheet'
         type: array
+    type: object
+  models.Fill:
+    properties:
+      color:
+        items:
+          type: string
+        type: array
+      pattern:
+        type: integer
+      shading:
+        type: integer
+      type:
+        type: string
     type: object
   models.Font:
     properties:
@@ -100,13 +100,13 @@ definitions:
       alignment:
         $ref: '#/definitions/models.Alignment'
         type: object
-      background:
-        $ref: '#/definitions/models.Background'
-        type: object
       border:
         items:
           $ref: '#/definitions/models.Border'
         type: array
+      fill:
+        $ref: '#/definitions/models.Fill'
+        type: object
       font:
         $ref: '#/definitions/models.Font'
         type: object
@@ -203,8 +203,8 @@ paths:
       produces:
       - application/octet-stream
       responses:
-        "200":
-          description: OK
+        "201":
+          description: Created
           schema:
             type: string
         "422":
