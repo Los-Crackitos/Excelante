@@ -18,7 +18,7 @@ import (
 // @Failure 400 {string} string
 // @Router /read/lines [post]
 func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
-	file, _, err := r.FormFile("file")
+	file, _, _ := r.FormFile("file")
 	output, err := services.ReadLines(file)
 
 	if err != nil {
@@ -43,7 +43,7 @@ func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
 // @Failure 400 {string} string
 // @Router /read/columns [post]
 func ReadExcelFileByColumn(w http.ResponseWriter, r *http.Request) {
-	file, _, err := r.FormFile("file")
+	file, _, _ := r.FormFile("file")
 	output, err := services.ReadColumns(file)
 
 	if err != nil {
