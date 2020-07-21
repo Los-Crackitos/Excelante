@@ -28,6 +28,46 @@ definitions:
       value:
         type: object
     type: object
+  models.Chart:
+    properties:
+      dimension:
+        $ref: '#/definitions/models.Dimension'
+        type: object
+      format:
+        $ref: '#/definitions/models.Format'
+        type: object
+      legend:
+        $ref: '#/definitions/models.Legend'
+        type: object
+      plot_area:
+        $ref: '#/definitions/models.PlotArea'
+        type: object
+      series:
+        items:
+          $ref: '#/definitions/models.Series'
+        type: array
+      title:
+        $ref: '#/definitions/models.Title'
+        type: object
+      type:
+        type: string
+    type: object
+  models.ColOrRowValues:
+    properties:
+      cells:
+        items:
+          $ref: '#/definitions/models.Cell'
+        type: array
+      orientation:
+        type: string
+    type: object
+  models.Dimension:
+    properties:
+      height:
+        type: integer
+      width:
+        type: integer
+    type: object
   models.File:
     properties:
       sheets:
@@ -65,16 +105,56 @@ definitions:
       underline:
         type: string
     type: object
+  models.Format:
+    properties:
+      lock_aspect_ratio:
+        type: boolean
+      locked:
+        type: boolean
+      print_obj:
+        type: boolean
+      x_offset:
+        type: number
+      x_scale:
+        type: number
+      y_offset:
+        type: number
+      y_scale:
+        type: number
+    type: object
   models.Item:
     properties:
-      mode:
-        type: string
+      chart:
+        $ref: '#/definitions/models.Chart'
+        type: object
       starting_cell_coordinates:
         type: string
-      tables:
+      table:
         items:
-          $ref: '#/definitions/models.Table'
+          $ref: '#/definitions/models.ColOrRowValues'
         type: array
+    type: object
+  models.Legend:
+    properties:
+      position:
+        type: string
+      show_legend_key:
+        type: boolean
+    type: object
+  models.PlotArea:
+    properties:
+      show_bubble_size:
+        type: boolean
+      show_cat_name:
+        type: boolean
+      show_leader_lines:
+        type: boolean
+      show_percent:
+        type: boolean
+      show_series_name:
+        type: boolean
+      show_val:
+        type: boolean
     type: object
   models.Protection:
     properties:
@@ -82,6 +162,15 @@ definitions:
         type: boolean
       locked:
         type: boolean
+    type: object
+  models.Series:
+    properties:
+      categories:
+        type: string
+      name:
+        type: string
+      values:
+        type: string
     type: object
   models.Sheet:
     properties:
@@ -114,13 +203,9 @@ definitions:
         $ref: '#/definitions/models.Protection'
         type: object
     type: object
-  models.Table:
+  models.Title:
     properties:
-      cells:
-        items:
-          $ref: '#/definitions/models.Cell'
-        type: array
-      orientation:
+      name:
         type: string
     type: object
   services.Output:

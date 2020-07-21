@@ -6,8 +6,8 @@ import (
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 )
 
-func (file *File) createTables(sheetName string, startingCoordinates string, tables []*models.Table) {
-	for index, table := range tables {
+func (file *File) createTable(sheetName string, startingCoordinates string, values []*models.ColOrRowValues) {
+	for index, value := range values {
 		// initialPositions is an integer array[col,row]
 		var initialPositions []int
 		columnPosition, rowPosition, err := excelize.CellNameToCoordinates(startingCoordinates)
@@ -16,7 +16,7 @@ func (file *File) createTables(sheetName string, startingCoordinates string, tab
 		}
 
 		// Depending table orientation, we iterate through column or row
-		if table.Orientation == "row" {
+		if value.Orientation == "row" {
 			rowPosition = rowPosition + index
 		} else {
 			columnPosition = columnPosition + index
@@ -24,7 +24,7 @@ func (file *File) createTables(sheetName string, startingCoordinates string, tab
 
 		initialPositions = append(initialPositions, columnPosition, rowPosition)
 
-		file.writeTable(sheetName, table.Cells, initialPositions, table.Orientation)
+		file.writeTable(sheetName, value.Cells, initialPositions, value.Orientation)
 	}
 }
 

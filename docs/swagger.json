@@ -176,6 +176,65 @@
                 }
             }
         },
+        "models.Chart": {
+            "type": "object",
+            "properties": {
+                "dimension": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Dimension"
+                },
+                "format": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Format"
+                },
+                "legend": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Legend"
+                },
+                "plot_area": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.PlotArea"
+                },
+                "series": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Series"
+                    }
+                },
+                "title": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Title"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ColOrRowValues": {
+            "type": "object",
+            "properties": {
+                "cells": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Cell"
+                    }
+                },
+                "orientation": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Dimension": {
+            "type": "object",
+            "properties": {
+                "height": {
+                    "type": "integer"
+                },
+                "width": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.File": {
             "type": "object",
             "properties": {
@@ -233,20 +292,81 @@
                 }
             }
         },
+        "models.Format": {
+            "type": "object",
+            "properties": {
+                "lock_aspect_ratio": {
+                    "type": "boolean"
+                },
+                "locked": {
+                    "type": "boolean"
+                },
+                "print_obj": {
+                    "type": "boolean"
+                },
+                "x_offset": {
+                    "type": "number"
+                },
+                "x_scale": {
+                    "type": "number"
+                },
+                "y_offset": {
+                    "type": "number"
+                },
+                "y_scale": {
+                    "type": "number"
+                }
+            }
+        },
         "models.Item": {
             "type": "object",
             "properties": {
-                "mode": {
-                    "type": "string"
+                "chart": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Chart"
                 },
                 "starting_cell_coordinates": {
                     "type": "string"
                 },
-                "tables": {
+                "table": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.Table"
+                        "$ref": "#/definitions/models.ColOrRowValues"
                     }
+                }
+            }
+        },
+        "models.Legend": {
+            "type": "object",
+            "properties": {
+                "position": {
+                    "type": "string"
+                },
+                "show_legend_key": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "models.PlotArea": {
+            "type": "object",
+            "properties": {
+                "show_bubble_size": {
+                    "type": "boolean"
+                },
+                "show_cat_name": {
+                    "type": "boolean"
+                },
+                "show_leader_lines": {
+                    "type": "boolean"
+                },
+                "show_percent": {
+                    "type": "boolean"
+                },
+                "show_series_name": {
+                    "type": "boolean"
+                },
+                "show_val": {
+                    "type": "boolean"
                 }
             }
         },
@@ -258,6 +378,20 @@
                 },
                 "locked": {
                     "type": "boolean"
+                }
+            }
+        },
+        "models.Series": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "string"
                 }
             }
         },
@@ -306,16 +440,10 @@
                 }
             }
         },
-        "models.Table": {
+        "models.Title": {
             "type": "object",
             "properties": {
-                "cells": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Cell"
-                    }
-                },
-                "orientation": {
+                "name": {
                     "type": "string"
                 }
             }

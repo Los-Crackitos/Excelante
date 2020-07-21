@@ -9,7 +9,9 @@ func (file *File) writeItems(sheetName string, items []*models.Item) {
 }
 
 func (file *File) writeItem(sheetName string, item *models.Item) {
-	if item.Mode == "table" {
-		file.createTables(sheetName, item.StartingCellCoordinates, item.Tables)
+	if item.Chart != nil {
+		file.createChart(sheetName, item.StartingCellCoordinates, item.Chart)
+		return
 	}
+	file.createTable(sheetName, item.StartingCellCoordinates, item.Table)
 }
