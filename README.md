@@ -1,4 +1,4 @@
-# Excelante
+![Excelante](img/excelante.png)
 
 ![Code Quality Status](https://github.com/Los-Crackitos/Excelante/workflows/Code%20Quality/badge.svg?branch=master)
 ![Tests Status](https://github.com/Los-Crackitos/Excelante/workflows/Tests/badge.svg?branch=master)
