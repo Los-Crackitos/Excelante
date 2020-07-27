@@ -16,6 +16,10 @@ All API documentation can be found at [Excelante Doc](https://app.gitbook.com/@l
 
 Swagger API documentation can be found at `/api/v1/swagger/`
 
+## Website
+
+Work in progress [here](https://github.com/Los-Crackitos/excelante-site) 
+
 
 ## Want to contribute ?
 
@@ -23,6 +27,10 @@ Swagger API documentation can be found at `/api/v1/swagger/`
 
 Clone the repository and run ``` make init ``` to copy all configuration files.
 Then, run ``` docker-compose up ``` to start the project.
+
+### Roadmap
+
+[See the roadmap »](roadmap.md)
 
 ### Code of conduct
 
@@ -40,8 +48,8 @@ This Code of Conduct is adapted from the Contributor Covenant, version 1.0.0, av
 
 ## Sponsors
 
-If you want to support us in our open source work :)
+Support our open source work 😄
 
 ## License
 
-Excelante is under MIT license. Feel free to use it as u want.
+Excelante is under MIT license. Feel free to use it as you want.
