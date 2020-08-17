@@ -18,15 +18,14 @@ Swagger API documentation can be found at `/api/v1/swagger/`
 
 ## Website
 
-Work in progress [here](https://github.com/Los-Crackitos/excelante-site) 
+Work in progress [here](https://github.com/Los-Crackitos/excelante-site)
 
-
-## Want to contribute ?
+## Want to contribute
 
 ### Getting Started
 
-Clone the repository and run ``` make init ``` to copy all configuration files.
-Then, run ``` docker-compose up ``` to start the project.
+Clone the repository and run `make init` to copy all configuration files.
+Then, run `docker-compose up` to start the project.
 
 ### Roadmap
 
@@ -44,7 +43,7 @@ Project maintainers have the right and responsibility to remove, edit, or reject
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening an issue or contacting one or more of the project maintainers.
 
-This Code of Conduct is adapted from the Contributor Covenant, version 1.0.0, available at https://www.contributor-covenant.org/version/1/0/0/code-of-conduct.html
+This Code of Conduct is adapted from the Contributor Covenant, version 1.0.0, available at <https://www.contributor-covenant.org/version/1/0/0/code-of-conduct.html>
 
 ## Sponsors
 
