@@ -2,31 +2,19 @@ package services
 
 import (
 	"encoding/json"
-	"errors"
 
 	"github.com/Los-Crackitos/Excelante/models"
 )
 
-func (file *File) generateStyle(cellStyle *models.Style) (int, error) {
-	styleProps, err := json.Marshal(cellStyle)
-	if err != nil {
-		return 0, errors.New("An error occurred when decode cellStyle JSON data")
-	}
+func (file *File) generateStyle(cellStyle *models.Style) int {
+	styleProps, _ := json.Marshal(cellStyle)
+	style, _ := file.Excel.NewStyle(string(styleProps))
 
-	style, err := file.Excel.NewStyle(string(styleProps))
-	if err != nil {
-		return 0, errors.New("An error occurred when generating cell style")
-	}
-
-	return style, nil
+	return style
 }
 
 func (file *File) writeCell(sheetName string, value interface{}, cellStyle *models.Style, cellPosition string) error {
-	style, err := file.generateStyle(cellStyle)
-
-	if err != nil {
-		return err
-	}
+	style := file.generateStyle(cellStyle)
 
 	file.Excel.SetCellStyle(sheetName,
 		cellPosition,
