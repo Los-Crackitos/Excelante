@@ -2,6 +2,7 @@ package services
 
 import (
 	"mime/multipart"
+	"strings"
 
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 )
@@ -42,7 +43,7 @@ func ReadLines(file multipart.File) (Output, error) {
 					cellValue = "N/A"
 				}
 
-				rowValue = append(rowValue, cellValue)
+				rowValue = append(rowValue, strings.TrimLeft(cellValue, " "))
 			}
 
 			output[sheetName][currentRowIndex] = rowValue
@@ -86,7 +87,7 @@ func ReadColumns(file multipart.File) (Output, error) {
 					cellValue = "N/A"
 				}
 
-				rowValue = append(rowValue, cellValue)
+				rowValue = append(rowValue, strings.TrimLeft(cellValue, " "))
 			}
 
 			output[sheetName][currentColIndex] = rowValue
