@@ -11,7 +11,7 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-// CreateRouter create Excelante API routes
+// CreateRouter create every Excelante API routes and serve it to a given port
 func CreateRouter() {
 	router := mux.NewRouter()
 	APIRouter := router.PathPrefix("/api/v1").Subrouter()

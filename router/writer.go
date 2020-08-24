@@ -5,7 +5,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// CreateWriterRouter create writer routes and dispatch http method post to handler
 func createWriterRouter(router *mux.Router) {
 	writerRouter := router.PathPrefix("/write").Subrouter()
 

@@ -6,7 +6,7 @@ type Cell struct {
 	Style *Style      `json:"style,omitempty"`
 }
 
-// Style represent json model Data
+// Style represent JSON model Data
 type Style struct {
 	Border     []*Border   `json:"border,omitempty"`
 	Fill       *Fill       `json:"fill,omitempty"`
@@ -15,13 +15,13 @@ type Style struct {
 	Protection *Protection `json:"protection,omitempty"`
 }
 
-//Protection represent a json cell style model
+//Protection represent a JSON cell style model
 type Protection struct {
 	Hidden bool `json:"hidden,omitempty"`
 	Locked bool `json:"locked,omitempty"`
 }
 
-//Font represent a json cell style model
+//Font represent a JSON cell style model
 type Font struct {
 	Bold      bool    `json:"bold,omitempty"`
 	Italic    bool    `json:"italic,omitempty"`
