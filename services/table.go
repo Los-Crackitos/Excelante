@@ -41,6 +41,6 @@ func (file *File) writeTable(sheetName string, cells []*models.Cell, initialPosi
 		}
 
 		cellPosition, _ := excelize.CoordinatesToCellName(columnPosition, rowPosition)
-		file.writeCell(sheetName, cell.Value, cell.Style, cellPosition)
+		file.writeCell(sheetName, cell, cellPosition)
 	}
 }
