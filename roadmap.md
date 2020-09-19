@@ -21,7 +21,7 @@ Excelante is an Excel API that allow user to create or to read some excel file.
 #### [V2.0]
   - Create pivot table with json input file
   - Change the extract return format for excel reading
-  - Add formula to cell when excel table is created
+  - ~~Add formula to cell when excel table is created
   - Online website to create/read excel file using Excelante API, cf: [Excelante Site](http://github.com/Los-Crackitos/excelante-site)
   - Optimisation & best practices
    - Using goroutine to optimise the treatment (I can create a table with more than 50,000 lines in few seconds, or i can read an excel file with 50,000 lines in few seconds)

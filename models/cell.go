@@ -2,8 +2,9 @@ package models
 
 // Cell struct contain all the cell data used to generate a cell
 type Cell struct {
-	Value interface{} `json:"value"`
-	Style *Style      `json:"style,omitempty"`
+	Value     interface{} `json:"value"`
+	Style     *Style      `json:"style,omitempty"`
+	IsFormula bool        `json:"is_formula,omitempty"`
 }
 
 // Style represent json model Data
