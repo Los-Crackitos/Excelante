@@ -16,6 +16,31 @@ All API documentation can be found at [Excelante Doc](https://app.gitbook.com/@l
 
 Swagger API documentation can be found at `/api/v1/swagger/`
 
+## Benchmark
+
+Benchmark was realized on MacBook Pro (2015) laptop:
+2,7 GHz Intel Core i5 double core
+8 Go 1867 MHz DDR3
+
+### Writer
+
+| Tests                       | Run 1   | Run 2   | Run 3   | Run 4     | Run 5    | Moy     |
+| --------------------------- | ------- | ------- | ------- | --------- | -------- | ------- |
+| 10x10 (100 cells)           | 382ms   | 361ms   | 249ms   | 269ms     | 214ms    | 295ms   |
+| 100x100 (10 000 cells)      | 627ms   | 501ms   | 517ms   | 512ms     | 475ms    | 5264ms  |
+| 1000x1000 (1 000 000 cells) | 83,299s | 95,253s | 81,792s | 104,130ms | 101,336s | 93,162s |
+
+### Reader
+
+| Tests                           | Run 1          | Run 2          | Run 3          | Run 4          | Run 5          | Moy     |
+| ------------------------------- | -------------- | -------------- | -------------- | -------------- | -------------- | ------- |
+| 15(cols)x25(rows) (375 cells)   | columns: 168ms | columns: 140ms | columns: 199ms | columns: 224ms | columns: 90ms  | 3262ms  |
+|                                 | lines: 45ms    | lines: 28ms    | lines: 39ms    | lines: 79ms    | lines: 37ms    | 45,6ms  |
+| 30(cols)x50(rows) (1500 cells)  | columns: 512ms | columns: 597ms | columns: 582ms | columns: 609ms | columns: 414ms | 542,8ms |
+|                                 | lines: 48ms    | lines: 97ms    | lines: 69ms    | lines: 172ms   | lines: 104ms   | 98ms    |
+| 60(cols)x100(rows) (6000 cells) | columns: 2,17s | columns: 2,74s | columns: 2,10s | columns: 2,14s | columns: 2,25s | 2,28s   |
+|                                 | lines: 167ms   | lines: 146ms   | lines: 392ms   | lines: 201ms   | lines: 241ms   | 229,4ms |
+
 ## Website
 
 Work in progress [here](https://github.com/Los-Crackitos/excelante-site)
