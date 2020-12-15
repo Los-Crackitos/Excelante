@@ -33,6 +33,14 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Sheets to extract",
+                        "name": "sheets",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -70,6 +78,14 @@
                         "name": "file",
                         "in": "body",
                         "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Sheets to extract",
+                        "name": "sheets",
+                        "in": "body",
                         "schema": {
                             "type": "string"
                         }
@@ -167,6 +183,9 @@
         "models.Cell": {
             "type": "object",
             "properties": {
+                "is_formula": {
+                    "type": "boolean"
+                },
                 "style": {
                     "type": "object",
                     "$ref": "#/definitions/models.Style"

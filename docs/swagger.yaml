@@ -22,6 +22,8 @@ definitions:
     type: object
   models.Cell:
     properties:
+      is_formula:
+        type: boolean
       style:
         $ref: '#/definitions/models.Style'
         type: object
@@ -233,6 +235,11 @@ paths:
         required: true
         schema:
           type: string
+      - description: Sheets to extract
+        in: body
+        name: sheets
+        schema:
+          type: string
       produces:
       - application/json
       responses:
@@ -257,6 +264,11 @@ paths:
         in: body
         name: file
         required: true
+        schema:
+          type: string
+      - description: Sheets to extract
+        in: body
+        name: sheets
         schema:
           type: string
       produces:

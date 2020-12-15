@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+	"strings"
 
 	"github.com/Los-Crackitos/Excelante/services"
 )
@@ -14,12 +15,21 @@ import (
 // @Accept mpfd
 // @Produce json
 // @Param file body string true "The Excel file to convert"
+// @Param sheets body string false "Sheets to extract"
 // @Success 200 {object} services.Output
 // @Failure 400 {string} string
 // @Router /read/lines [post]
 func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
 	file, _, _ := r.FormFile("file")
-	output, err := services.ReadLines(file)
+	r.ParseForm()
+	sheets := r.Form.Get("sheets")
+
+	var sheetsToExtract []string
+	if sheets != "" {
+		sheetsToExtract = strings.Split(sheets, ",")
+	}
+
+	output, err := services.ReadLines(file, sheetsToExtract)
 
 	if err != nil {
 		http.Error(w, "An error occurred during file reading", http.StatusBadRequest)
@@ -39,12 +49,21 @@ func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
 // @Accept mpfd
 // @Produce json
 // @Param file body string true "The Excel file to convert"
+// @Param sheets body string false "Sheets to extract"
 // @Success 200 {object} services.Output
 // @Failure 400 {string} string
 // @Router /read/columns [post]
 func ReadExcelFileByColumn(w http.ResponseWriter, r *http.Request) {
 	file, _, _ := r.FormFile("file")
-	output, err := services.ReadColumns(file)
+	r.ParseForm()
+	sheets := r.Form.Get("sheets")
+
+	var sheetsToExtract []string
+	if sheets != "" {
+		sheetsToExtract = strings.Split(sheets, ",")
+	}
+
+	output, err := services.ReadColumns(file, sheetsToExtract)
 
 	if err != nil {
 		http.Error(w, "An error occurred during file reading", http.StatusBadRequest)

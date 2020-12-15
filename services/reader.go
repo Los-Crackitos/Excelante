@@ -12,7 +12,7 @@ type Output map[string]map[int]interface{}
 
 // ReadLines read all lines of a given Excel file
 // Returns all values of the file using the Output type or an error
-func ReadLines(file multipart.File) (Output, error) {
+func ReadLines(file multipart.File, sheetsToExtract []string) (Output, error) {
 	output := make(Output)
 	f, err := excelize.OpenReader(file)
 
@@ -21,6 +21,10 @@ func ReadLines(file multipart.File) (Output, error) {
 	}
 
 	for _, sheetName := range f.GetSheetMap() {
+		if len(sheetsToExtract) > 0 && !sheetFinder(sheetName, sheetsToExtract) {
+			continue
+		}
+
 		output[sheetName] = make(map[int]interface{})
 
 		rows, err := f.Rows(sheetName)
@@ -56,7 +60,7 @@ func ReadLines(file multipart.File) (Output, error) {
 
 // ReadColumns read all columns of a given Excel file
 // Returns all values of the file using the Output type or an error
-func ReadColumns(file multipart.File) (Output, error) {
+func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) {
 	output := make(Output)
 	f, err := excelize.OpenReader(file)
 
@@ -65,6 +69,10 @@ func ReadColumns(file multipart.File) (Output, error) {
 	}
 
 	for _, sheetName := range f.GetSheetMap() {
+		if len(sheetsToExtract) > 0 && !sheetFinder(sheetName, sheetsToExtract) {
+			continue
+		}
+
 		output[sheetName] = make(map[int]interface{})
 
 		cols, err := f.Cols(sheetName)
@@ -96,4 +104,13 @@ func ReadColumns(file multipart.File) (Output, error) {
 	}
 
 	return output, nil
+}
+
+func sheetFinder(sheetName string, sheetsToExtract []string) bool {
+	for _, v := range sheetsToExtract {
+		if v == sheetName {
+			return true
+		}
+	}
+	return false
 }

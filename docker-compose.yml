@@ -3,8 +3,8 @@ version: "3.7"
 services:
   api:
     container_name: "Excelante-api"
-    image: golang:1.13
+    image: golang:1.15
     working_dir: /api
     volumes:
-    - ".:/api"
+      - ".:/api"
     entrypoint: ["./entrypoint.sh", "reflex", "-c", "reflex.conf"]
