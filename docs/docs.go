@@ -52,11 +52,11 @@ var doc = `{
                         }
                     },
                     {
-                        "description": "Sheets to extract",
-                        "name": "sheets",
+                        "description": "Reader optional options",
+                        "name": "options",
                         "in": "body",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ReaderOption"
                         }
                     }
                 ],
@@ -100,11 +100,11 @@ var doc = `{
                         }
                     },
                     {
-                        "description": "Sheets to extract",
-                        "name": "sheets",
+                        "description": "Reader optional options",
+                        "name": "options",
                         "in": "body",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ReaderOption"
                         }
                     }
                 ],
@@ -383,6 +383,17 @@ var doc = `{
                 }
             }
         },
+        "models.Option": {
+            "type": "object",
+            "properties": {
+                "coordinates": {
+                    "type": "string"
+                },
+                "sheetname": {
+                    "type": "string"
+                }
+            }
+        },
         "models.PlotArea": {
             "type": "object",
             "properties": {
@@ -414,6 +425,17 @@ var doc = `{
                 },
                 "locked": {
                     "type": "boolean"
+                }
+            }
+        },
+        "models.ReaderOption": {
+            "type": "object",
+            "properties": {
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Option"
+                    }
                 }
             }
         },
