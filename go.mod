@@ -8,6 +8,7 @@ require (
 	github.com/go-openapi/spec v0.19.7 // indirect
 	github.com/go-openapi/swag v0.19.9 // indirect
 	github.com/gorilla/mux v1.7.4
+	github.com/imdario/mergo v0.3.11
 	github.com/mailru/easyjson v0.7.1 // indirect
 	github.com/rs/cors v1.7.0
 	github.com/stretchr/testify v1.5.1
