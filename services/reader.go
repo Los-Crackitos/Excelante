@@ -1,6 +1,7 @@
 package services
 
 import (
+	"fmt"
 	"mime/multipart"
 	"strings"
 
@@ -12,24 +13,21 @@ type Output map[string]map[int]interface{}
 
 // ReadLines read all lines of a given Excel file
 // Returns all values of the file using the Output type or an error
-func ReadLines(file multipart.File, sheetsToExtract []string) (Output, error) {
+func ReadLines(file *excelize.File, sheet string, ch chan Output) error {
 	output := make(Output)
-	f, err := excelize.OpenReader(file)
 
-	if err != nil {
-		return nil, err
-	}
+	fmt.Println("SHEET INSIDE FUNCTION", sheet)
 
-	for _, sheetName := range f.GetSheetMap() {
-		if len(sheetsToExtract) > 0 && !sheetFinder(sheetName, sheetsToExtract) {
+	for _, sheetName := range file.GetSheetMap() {
+		if sheetName != sheet {
 			continue
 		}
 
 		output[sheetName] = make(map[int]interface{})
 
-		rows, err := f.Rows(sheetName)
+		rows, err := file.Rows(sheetName)
 		if err != nil {
-			return nil, err
+			return err
 		}
 
 		currentRowIndex := 1
@@ -37,7 +35,7 @@ func ReadLines(file multipart.File, sheetsToExtract []string) (Output, error) {
 		for rows.Next() {
 			row, err := rows.Columns()
 			if err != nil {
-				return nil, err
+				return err
 			}
 
 			rowValue := make([]interface{}, 0)
@@ -55,21 +53,23 @@ func ReadLines(file multipart.File, sheetsToExtract []string) (Output, error) {
 		}
 	}
 
-	return output, nil
+	ch <- output
+
+	return nil
 }
 
 // ReadColumns read all columns of a given Excel file
 // Returns all values of the file using the Output type or an error
-func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) {
+func ReadColumns(file multipart.File, sheet string, ch chan Output) error {
 	output := make(Output)
 	f, err := excelize.OpenReader(file)
 
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	for _, sheetName := range f.GetSheetMap() {
-		if len(sheetsToExtract) > 0 && !sheetFinder(sheetName, sheetsToExtract) {
+		if sheetName != sheet {
 			continue
 		}
 
@@ -77,7 +77,7 @@ func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) 
 
 		cols, err := f.Cols(sheetName)
 		if err != nil {
-			return nil, err
+			return err
 		}
 
 		currentColIndex := 1
@@ -85,7 +85,7 @@ func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) 
 		for cols.Next() {
 			col, err := cols.Rows()
 			if err != nil {
-				return nil, err
+				return err
 			}
 
 			rowValue := make([]interface{}, 0)
@@ -103,14 +103,7 @@ func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) 
 		}
 	}
 
-	return output, nil
-}
+	ch <- output
 
-func sheetFinder(sheetName string, sheetsToExtract []string) bool {
-	for _, v := range sheetsToExtract {
-		if v == sheetName {
-			return true
-		}
-	}
-	return false
+	return nil
 }
