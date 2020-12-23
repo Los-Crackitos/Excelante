@@ -4,6 +4,8 @@ import (
 	"mime/multipart"
 	"strings"
 
+	"github.com/Los-Crackitos/Excelante/models"
+
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 )
 
@@ -12,7 +14,7 @@ type Output map[string]map[int]interface{}
 
 // ReadLines read all lines of a given Excel file
 // Returns all values of the file using the Output type or an error
-func ReadLines(file multipart.File, sheetsToExtract []string) (Output, error) {
+func ReadLines(file multipart.File, readerOptions models.ReaderOption) (Output, error) {
 	output := make(Output)
 	f, err := excelize.OpenReader(file)
 
@@ -20,9 +22,16 @@ func ReadLines(file multipart.File, sheetsToExtract []string) (Output, error) {
 		return nil, err
 	}
 
+	initialColIndex := 1
+	initialRowIndex := 1
+	sheetFound := false
+
 	for _, sheetName := range f.GetSheetMap() {
-		if len(sheetsToExtract) > 0 && !sheetFinder(sheetName, sheetsToExtract) {
-			continue
+		if len(readerOptions.Options) > 0 {
+			sheetFound, initialColIndex, initialRowIndex = sheetFinder(sheetName, readerOptions)
+			if !sheetFound {
+				continue
+			}
 		}
 
 		output[sheetName] = make(map[int]interface{})
@@ -40,9 +49,16 @@ func ReadLines(file multipart.File, sheetsToExtract []string) (Output, error) {
 				return nil, err
 			}
 
+			if currentRowIndex < initialRowIndex {
+				currentRowIndex++
+				continue
+			}
+
 			rowValue := make([]interface{}, 0)
 
-			for _, cellValue := range row {
+			for i := (initialColIndex - 1); i < len(row); i++ {
+				cellValue := row[i]
+
 				if cellValue == "" {
 					cellValue = "N/A"
 				}
@@ -60,7 +76,7 @@ func ReadLines(file multipart.File, sheetsToExtract []string) (Output, error) {
 
 // ReadColumns read all columns of a given Excel file
 // Returns all values of the file using the Output type or an error
-func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) {
+func ReadColumns(file multipart.File, readerOptions models.ReaderOption) (Output, error) {
 	output := make(Output)
 	f, err := excelize.OpenReader(file)
 
@@ -68,9 +84,16 @@ func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) 
 		return nil, err
 	}
 
+	initialColIndex := 1
+	initialRowIndex := 1
+	sheetFound := false
+
 	for _, sheetName := range f.GetSheetMap() {
-		if len(sheetsToExtract) > 0 && !sheetFinder(sheetName, sheetsToExtract) {
-			continue
+		if len(readerOptions.Options) > 0 {
+			sheetFound, initialColIndex, initialRowIndex = sheetFinder(sheetName, readerOptions)
+			if !sheetFound {
+				continue
+			}
 		}
 
 		output[sheetName] = make(map[int]interface{})
@@ -88,9 +111,16 @@ func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) 
 				return nil, err
 			}
 
+			if currentColIndex < initialColIndex {
+				currentColIndex++
+				continue
+			}
+
 			rowValue := make([]interface{}, 0)
 
-			for _, cellValue := range col {
+			for i := (initialRowIndex - 1); i < len(col); i++ {
+				cellValue := col[i]
+
 				if cellValue == "" {
 					cellValue = "N/A"
 				}
@@ -106,11 +136,15 @@ func ReadColumns(file multipart.File, sheetsToExtract []string) (Output, error) 
 	return output, nil
 }
 
-func sheetFinder(sheetName string, sheetsToExtract []string) bool {
-	for _, v := range sheetsToExtract {
-		if v == sheetName {
-			return true
+func sheetFinder(sheetName string, readerOptions models.ReaderOption) (bool, int, int) {
+	for _, option := range readerOptions.Options {
+		if option.SheetName == sheetName {
+			if option.StartingCoordinates != "" {
+				initialColIndex, initialRowIndex, _ := excelize.CellNameToCoordinates(option.StartingCoordinates)
+				return true, initialColIndex, initialRowIndex
+			}
+			return true, 1, 1
 		}
 	}
-	return false
+	return false, 1, 1
 }

@@ -3,8 +3,8 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
-	"strings"
 
+	"github.com/Los-Crackitos/Excelante/models"
 	"github.com/Los-Crackitos/Excelante/services"
 )
 
@@ -15,21 +15,20 @@ import (
 // @Accept mpfd
 // @Produce json
 // @Param file body string true "The Excel file to convert"
-// @Param sheets body string false "Sheets to extract"
+// @Param options body models.ReaderOption false "Reader optional options"
 // @Success 200 {object} services.Output
 // @Failure 400 {string} string
 // @Router /read/lines [post]
 func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	file, _, _ := r.FormFile("file")
 	r.ParseForm()
-	sheets := r.Form.Get("sheets")
+	options := r.Form.Get("options")
 
-	var sheetsToExtract []string
-	if sheets != "" {
-		sheetsToExtract = strings.Split(sheets, ",")
-	}
+	readerOptions := models.ReaderOption{}
+	json.Unmarshal([]byte(options), &readerOptions)
 
-	output, err := services.ReadLines(file, sheetsToExtract)
+	output, err := services.ReadLines(file, readerOptions)
 
 	if err != nil {
 		http.Error(w, "An error occurred during file reading", http.StatusBadRequest)
@@ -37,7 +36,6 @@ func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(output)
 }
@@ -49,21 +47,20 @@ func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
 // @Accept mpfd
 // @Produce json
 // @Param file body string true "The Excel file to convert"
-// @Param sheets body string false "Sheets to extract"
+// @Param options body models.ReaderOption false "Reader optional options"
 // @Success 200 {object} services.Output
 // @Failure 400 {string} string
 // @Router /read/columns [post]
 func ReadExcelFileByColumn(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	file, _, _ := r.FormFile("file")
 	r.ParseForm()
-	sheets := r.Form.Get("sheets")
+	options := r.Form.Get("options")
 
-	var sheetsToExtract []string
-	if sheets != "" {
-		sheetsToExtract = strings.Split(sheets, ",")
-	}
+	readerOptions := models.ReaderOption{}
+	json.Unmarshal([]byte(options), &readerOptions)
 
-	output, err := services.ReadColumns(file, sheetsToExtract)
+	output, err := services.ReadColumns(file, readerOptions)
 
 	if err != nil {
 		http.Error(w, "An error occurred during file reading", http.StatusBadRequest)
@@ -71,7 +68,6 @@ func ReadExcelFileByColumn(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(output)
 }
