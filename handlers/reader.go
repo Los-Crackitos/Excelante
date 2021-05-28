@@ -9,6 +9,7 @@ import (
 )
 
 // ReadExcelFileByLine read a given excel file line by line and return every data into JSON format
+// Max excel size is 60mb
 // @Summary Read Excel file line by line
 // @Description transform given Excel file to JSON
 // @Tags Readers
@@ -22,7 +23,7 @@ import (
 func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	file, _, _ := r.FormFile("file")
-	r.ParseForm()
+	r.ParseMultipartForm(60 << 20)
 	options := r.Form.Get("options")
 
 	readerOptions := models.ReaderOption{}
@@ -41,6 +42,7 @@ func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
 }
 
 // ReadExcelFileByColumn read a given excel file column by column and return every data into JSON format
+// Max excel size is 60mb
 // @Summary Read Excel file column by column
 // @Description transform given Excel file to JSON
 // @Tags Readers
@@ -54,7 +56,7 @@ func ReadExcelFileByLine(w http.ResponseWriter, r *http.Request) {
 func ReadExcelFileByColumn(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	file, _, _ := r.FormFile("file")
-	r.ParseForm()
+	r.ParseMultipartForm(60 << 20)
 	options := r.Form.Get("options")
 
 	readerOptions := models.ReaderOption{}
