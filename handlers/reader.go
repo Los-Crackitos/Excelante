@@ -73,3 +73,26 @@ func ReadExcelFileByColumn(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(output)
 }
+
+// ReadOptions collects reading options used to extract from an Excel file
+// @Summary Collects custom reading option
+// @Description save reading options used to read an Excel file
+// @Tags Readers
+// @Accept json
+// @Produce text
+// @Param json body string true "The options JSON object"
+// @Success 200 {string} string
+// @Failure 422 {string} string
+// @Router /read/custom [post]
+func ReadOptions(w http.ResponseWriter, r *http.Request) {
+	var options interface{}
+
+	if err := json.NewDecoder(r.Body).Decode(&options); err != nil {
+		http.Error(w, "Malformed body data", http.StatusUnprocessableEntity)
+
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode("Reading options has been correctly saved")
+}

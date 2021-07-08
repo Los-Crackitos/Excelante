@@ -7,13 +7,17 @@ import (
 )
 
 func createReaderRouter(router *mux.Router) {
-	writerRouter := router.PathPrefix("/read").Subrouter()
+	readerRouter := router.PathPrefix("/read").Subrouter()
 
-	writerRouter.
+	readerRouter.
 		HandleFunc("/lines", handlers.ReadExcelFileByLine).
 		Methods("POST")
 
-	writerRouter.
+	readerRouter.
 		HandleFunc("/columns", handlers.ReadExcelFileByColumn).
+		Methods("POST")
+
+	readerRouter.
+		HandleFunc("/custom", handlers.ReadOptions).
 		Methods("POST")
 }
