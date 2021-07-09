@@ -12,6 +12,7 @@ type File struct {
 }
 
 // WriteSheets write a sheets into a given Excel file
+// It also delete the default "Sheet1" sheet after writing every sheets
 func (file *File) WriteSheets(sheets []*models.Sheet) {
 	for _, sheet := range sheets {
 		file.writeSheet(sheet)

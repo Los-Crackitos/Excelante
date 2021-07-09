@@ -10,6 +10,18 @@ import (
 )
 
 // Output is a generic type used by Excel reading functions
+// For example:
+//
+// map[
+//   Feuil1:
+//     map[
+//		   %!s(int=1): [Cell A1 Cell B1]
+//		   %!s(int=2): [Cell A2 Cell B2]
+//		   %!s(int=3): [Cell A3 Cell B3]
+//		   %!s(int=4): [N/A Cell B4]
+//			 %!s(int=5): [Cell A5 Cell B5]
+//     ]
+// ]
 type Output map[string]map[int]interface{}
 
 // ReadLines read all lines of a given Excel file
